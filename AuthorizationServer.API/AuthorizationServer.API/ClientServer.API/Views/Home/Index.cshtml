@@ -1,0 +1,417 @@
+﻿@{
+    string ClientServerURL = "http://localhost:55812";
+}
+<div class="jumbotron">
+    <h1>Client Server</h1>
+    <p1>JWT token based WebApi Authentication example</p1>
+</div>
+
+<button class="accordion">
+    <ol>
+        <h2>
+            <li value="1">
+                Register New User
+            </li>
+        </h2>
+    </ol>
+</button>
+<div class="panel">
+    <p>Request</p>
+    <pre>
+   
+<b>Request POST: http://localhost:56748/api/Account/Register </b>
+                :: Body Json::
+                {
+	            "FirstName":"Sagar",
+	            "LastName":"Patel",
+	            "Email":"sagar@gmail.com",
+	            "Password":"Sagar@123",
+	            "ConfirmPassword":"Sagar@123",
+                "IsGuestUser":"false"
+            }
+        </pre>
+    <br />
+    <table style="width:50%">
+        <caption>Register User Form</caption>
+        <tr>
+            <td>* First Name:</td>
+            <td><input type="text" name="fname" id="fname" /></td>
+        </tr>
+        <tr>
+            <td>* Last Name:</td>
+            <td><input type="text" name="lname" id="lname" /></td>
+        </tr>
+        <tr>
+            <td>* User Name (Email):</td>
+            <td> <input type="text" name="username1" id="username1" /></td>
+        </tr>
+        <tr>
+            <td>* Password:</td>
+            <td> <input type="text" name="password1" id="password1" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                Guest User? <input type="checkbox" id="ckhGuest" name="ckhGuest" value="0" />
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="button" id="btnRegister" name="btnRegister" value="Register" />
+            </td>
+        </tr>
+    </table>
+    <br />
+    Response:
+    <pre id="preResponseRegisterUser">
+        </pre>
+</div>
+
+<button class="accordion">
+    <Ol>
+        <h2>
+            <li value="2">
+                Login
+            </li>
+        </h2>
+
+    </Ol>
+</button>
+<div class="panel">
+    <p>
+        Desc: successfull Login will return JWT accesstoken
+    </p>
+    <pre>
+    <b>Request POST: http://localhost:55812//oauth2/token </b>
+                :: Body x-www-form-urlencoded:
+                username:sagar@gmail.com
+                password:Sagar@123
+                grant_type:password
+                client_id:webapi
+        </pre>
+    <br />
+    <table style="width:50%">
+        <caption>Login Form</caption>
+        <tr>
+            <td>* User Name:</td>
+            <td>
+                <input type="text" name="username" id="username" />
+            </td>
+        </tr>
+        <tr>
+            <td>* Password:</td>
+            <td>
+                <input type="text" name="password" id="password" />
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="button" id="btnLogin" name="btnLogin" value="Login" />
+            </td>
+        </tr>
+    </table>
+    <br />
+    Response:
+    <pre id="preResponse">
+     </pre>
+</div>
+
+<button class="accordion">
+    <Ol>
+        <h2>
+            <li value="3">
+                Get Claims for Authenticated User
+            </li>
+        </h2>
+    </Ol>
+</button>
+<div class="panel">
+    <p>Desc: Get List of user's claim</p>
+    <pre>
+    <b>Request GET: http://localhost:56748/api/Protected/GetClaims </b>
+                :: Header ::
+                Authorization : bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1laWQiOiJiNGM0Y2VkNC01OGQ0LTQwZGUtOTM4Ny1iMjUxOTM1Y2IxMTQiLCJ1bmlxdWVfbmFtZSI6InNhZ2FyQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYWNjZXNzY29udHJvbHNlcnZpY2UvMjAxMC8wNy9jbGFpbXMvaWRlbnRpdHlwcm92aWRlciI6IkFTUC5ORVQgSWRlbnRpdHkiLCJBc3BOZXQuSWRlbnRpdHkuU2VjdXJpdHlTdGFtcCI6IjA4M2JmOTBmLTVhODktNDUzMy05YmI3LTM1Y2I4OTQ2NzE5ZCIsInJvbGUiOiJHdWVzdDEiLCJmaXJzdG5hbWUiOiJTYWdhciIsImxhc3RuYW1lIjoiUGF0ZWwiLCJpc3MiOiJsb2NhbGhvc3QiLCJhdWQiOiJ3ZWJhcGkiLCJleHAiOjE1NDM0MDE4MTMsIm5iZiI6MTU0MzM5NjQxM30.fRn6x7Xn_iPOLXlJJiQ5LxPdeWnN5dNfhaiBY03EhyE
+                :: Body :
+        </pre>
+    <br />
+    <table style="width:50%">
+        <caption>Claim Request Form</caption>
+        <tr>
+            <td>* Authorization Token (Header):</td>
+            <td>
+                <input type="text" name="token" id="token" />
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="button" id="btnGetclaim" name="btnGetclaim" value="Get Claim" />
+            </td>
+        </tr>
+    </table>
+    <br />
+    Response:
+    <pre id="preResponseClaim">
+     </pre>
+
+</div>
+
+
+<button class="accordion">
+    <Ol>
+        <h2>
+            <li value="3">
+                Guest User message
+            </li>
+        </h2>
+    </Ol>
+</button>
+<div class="panel">
+    <p>Desc: Logged-in user must be "Guest" Role</p>
+    <pre>
+        <b>Request GET: http://localhost:56748/api/Protected/GetGuestMessage </b>
+                :: Header ::
+                Authorization : bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1laWQiOiJiNGM0Y2VkNC01OGQ0LTQwZGUtOTM4Ny1iMjUxOTM1Y2IxMTQiLCJ1bmlxdWVfbmFtZSI6InNhZ2FyQGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYWNjZXNzY29udHJvbHNlcnZpY2UvMjAxMC8wNy9jbGFpbXMvaWRlbnRpdHlwcm92aWRlciI6IkFTUC5ORVQgSWRlbnRpdHkiLCJBc3BOZXQuSWRlbnRpdHkuU2VjdXJpdHlTdGFtcCI6IjA4M2JmOTBmLTVhODktNDUzMy05YmI3LTM1Y2I4OTQ2NzE5ZCIsInJvbGUiOiJHdWVzdDEiLCJmaXJzdG5hbWUiOiJTYWdhciIsImxhc3RuYW1lIjoiUGF0ZWwiLCJpc3MiOiJsb2NhbGhvc3QiLCJhdWQiOiJ3ZWJhcGkiLCJleHAiOjE1NDM0MDE4MTMsIm5iZiI6MTU0MzM5NjQxM30.fRn6x7Xn_iPOLXlJJiQ5LxPdeWnN5dNfhaiBY03EhyE
+                :: Body :
+        </pre>
+    <br />
+    <table style="width:50%">
+        <caption>Guest User Message Request Form</caption>
+        <tr>
+            <td>* Authorization Token (Header):</td>
+            <td>
+                <input type="text" name="tokenguest" id="tokenguest" />
+            </td>
+        </tr>       
+        <tr>
+            <td></td>
+            <td>
+                <input type="button" id="btnGetGuestMessage" name="btnGetGuestMessage" value="Get Message" />
+            </td>
+        </tr>
+    </table>
+    <br />
+    Response:
+    <pre id="preResponseGuestMessage">
+     </pre>
+
+
+</div>
+<p><a class="btn btn-default" href="https://github.com/tjoudeh/JWTAspNetWebApi">Learn more &raquo;</a></p>
+
+<style>
+    th {
+        text-align: left;
+    }
+
+    td {
+        height: 30px;
+    }
+
+    .accordion {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        text-align: left;
+        border: none;
+        outline: none;
+        transition: 0.4s;
+    }
+
+        /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+        .active, .accordion:hover {
+            background-color: #ccc;
+        }
+
+    /* Style the accordion panel. Note: hidden by default */
+    .panel {
+        padding: 0 18px;
+        background-color: white;
+        display: none;
+        overflow: hidden;
+    }
+</style>
+@section Scripts
+{
+    <script>
+        $(function () {
+        });
+
+        $("#btnRegister").click(function () {
+            
+            if ($("#fname").val() == '') {
+                alert('please enter first name');
+                return;
+            }
+            else if ($("#lname").val() == '') {
+                alert('please enter last name');
+                return;
+            }
+            else if ($("#username1").val() == '') {
+                alert('please enter username');
+                return;
+            }
+            else if ($("#password1").val() == '') {
+                alert('please enter password');
+                return;
+            }
+
+
+            $.ajax({
+                url: "http://localhost:56748/api/Account/Register",
+                dataType: "application/json",
+                data: {
+                    FirstName: $("#fname").val(),
+                    LastName: $("#lname").val(),
+                    Email: $("#username1").val(),
+                    Password: $("#password1").val(),
+                    ConfirmPassword: $("#password1").val(),
+                    IsGuestUser: $('#ckhGuest').is(":checked"),
+                },
+                type: "POST",
+                success: function (data) {
+                    alert('ok');
+                },
+                complete: function (jqXHR) {
+                    console.log(jqXHR);
+                    if (jqXHR.readyState === 4) {
+                        console.log(jqXHR);
+                        if (jqXHR.responseText == '') { $("#preResponseRegisterUser").text("User Created."); }
+                        else { $("#preResponseRegisterUser").text(jqXHR.responseText); }
+                    }
+                },
+                //error: function (errorThrown) {
+                //    console.log(errorThrown);
+                //    alert(errorThrown);
+                //}
+            });
+
+        });
+
+
+        $("#btnLogin").click(function () {
+            if ($("#username").val() == '') {
+                alert('please enter username');
+                return;
+            }
+            else if ($("#password").val() == '') {
+                alert('please enter password');
+                return;
+            }
+
+            $.ajax({
+                url: "http://localhost:55812//oauth2/token",
+                dataType: "application/json",
+                data: {
+                    userName: $("#username").val(),
+                    password: $("#password").val(),
+                    client_id: "webapi",
+                    grant_type: "password"
+                },
+                type: "POST",
+                success: function (data) {
+                    alert('ok');
+                },
+                complete: function (jqXHR) {
+                    if (jqXHR.readyState === 4) {
+                        console.log(jqXHR.responseText);
+                        $("#preResponse").text(jqXHR.responseText);
+                    }
+                },
+                //error: function (errorThrown) {
+                //    console.log(errorThrown);
+                //    alert(errorThrown);
+                //}
+            });
+        });
+
+        
+        $("#btnGetclaim").click(function () {
+            if ($("#token").val() == '') {
+                alert('please enter token');
+                return;
+            }
+
+
+            $.ajax({
+                url: "http://localhost:56748/api/Protected/GetClaims",
+                dataType: "application/json",
+                headers: {
+                    "Authorization": "bearer " + $("#token").val()
+                },
+                data: {},
+                type: "GET",
+                success: function (data) {
+                    alert('ok');
+                },
+                complete: function (jqXHR) {
+                    if (jqXHR.readyState === 4) {
+                        console.log(jqXHR);
+                        $("#preResponseClaim").text(jqXHR.responseText);
+                    }
+                },
+                //error: function (errorThrown) {
+                //    console.log(errorThrown);
+                //    alert(errorThrown);
+                //}
+            });
+
+        });
+
+        $("#btnGetGuestMessage").click(function () {
+            if ($("#tokenguest").val() == '') {
+                alert('please enter token');
+                return;
+            }
+
+
+            $.ajax({
+                url: "http://localhost:56748/api/Protected/GetGuestMessage",
+                dataType: "application/json",
+                headers: {
+                    "Authorization": "bearer " + $("#tokenguest").val()
+                },
+                data: {},
+                type: "GET",
+                success: function (data) {
+                    alert('ok');
+                },
+                complete: function (jqXHR) {
+                    if (jqXHR.readyState === 4) {
+                        console.log(jqXHR);
+                        $("#preResponseGuestMessage").text(jqXHR.responseText);
+                    }
+                },
+                //error: function (errorThrown) {
+                //    console.log(errorThrown);
+                //    alert(errorThrown);
+                //}
+            });
+
+        });
+    </script>
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                /* Toggle between adding and removing the "active" class,
+                to highlight the button that controls the panel */
+                this.classList.toggle("active");
+
+                /* Toggle between hiding and showing the active panel */
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+    </script>
+}
